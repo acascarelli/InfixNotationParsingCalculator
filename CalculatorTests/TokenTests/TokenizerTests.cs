@@ -1,9 +1,5 @@
-﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using Xunit;
-using Newtonsoft.Json.Linq;
-using Calculator.Tokens;
+﻿using Calculator.Tokens;
+using FluentAssertions;
 
 namespace CalculatorTests.TokenTests
 {
