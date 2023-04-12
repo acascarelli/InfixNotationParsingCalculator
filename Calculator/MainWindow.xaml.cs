@@ -26,7 +26,6 @@ namespace Calculator
 
             acButton.Click += AcButton_Click;
             negativeButton.Click += NegativeButton_Click;
-            percentageButton.Click += PercentageButton_Click;
             equalButton.Click += EqualButton_Click;
         }
 
@@ -38,11 +37,6 @@ namespace Calculator
             var result = _calculator.Calculate(postfixNotationTokens).Value;
 
             resultLabel.Text = $"{result}";
-        }
-
-        private void PercentageButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void NegativeButton_Click(object sender, RoutedEventArgs e)

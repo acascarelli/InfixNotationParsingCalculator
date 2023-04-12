@@ -24,8 +24,8 @@
             <Setter Property="Background" Value="LightGray"/>
         </Style>
 
-        <Style TargetType="Label">
-            <Setter Property="FontSize" Value="70"/>
+        <Style TargetType="TextBlock" x:Key="viewboxStyle">
+            <Setter Property="FontSize" Value="50"/>
         </Style>
     </Application.Resources>
 </Application>
