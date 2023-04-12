@@ -26,6 +26,9 @@ namespace Calculator.Tokens
 
         private void FeedCharacter(char next)
         {
+            if (Char.IsWhiteSpace(next))
+                return;
+
             if (IsOperatorCharacter(next))
             {
                 if (_valueTokenBuilder.Length > 0)
@@ -46,7 +49,7 @@ namespace Calculator.Tokens
 
         private bool IsOperatorCharacter(char next) => _validOperators.Contains(next);
 
-        private IToken CreateOperandToken(string raw)
+        private static IToken CreateOperandToken(string raw)
         {
             if (double.TryParse(raw, out double result))
                 return new OperandToken(result);
@@ -55,17 +58,19 @@ namespace Calculator.Tokens
         }
 
 
-        private IToken CreateOperatorToken(char next) => next switch
+        private static OperatorToken CreateOperatorToken(char c)
         {
-            '(' => new OperatorToken(OperatorType.OpeningBracket),
-            ')' => new OperatorToken(OperatorType.ClosingBracket),
-            '+' => new OperatorToken(OperatorType.Addition),
-            '-' => new OperatorToken(OperatorType.Subtraction),
-            '*' => new OperatorToken(OperatorType.Multiplication),
-            '/' => new OperatorToken(OperatorType.Division),
-            _ => throw new ArgumentException($"There's not a suitable operator for the char {next}")
-
-        };
+            return c switch
+            {
+                '(' => new OperatorToken(OperatorType.OpeningBracket),
+                ')' => new OperatorToken(OperatorType.ClosingBracket),
+                '+' => new OperatorToken(OperatorType.Addition),
+                '-' => new OperatorToken(OperatorType.Subtraction),
+                '*' => new OperatorToken(OperatorType.Multiplication),
+                '/' => new OperatorToken(OperatorType.Division),
+                _ => throw new ArgumentException($"There's no a suitable operator for the char {c}"),
+            };
+        }
 
         private void Reset()
         {
@@ -75,7 +80,7 @@ namespace Calculator.Tokens
 
         private IEnumerable<IToken> GetResult()
         {
-            if(_valueTokenBuilder.Length > 0)
+            if (_valueTokenBuilder.Length > 0)
             {
                 var token = CreateOperandToken(_valueTokenBuilder.ToString());
                 _valueTokenBuilder.Clear();
