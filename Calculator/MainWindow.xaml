@@ -23,11 +23,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="resultLabel"
+        <Viewbox HorizontalAlignment="Right"
+                 VerticalAlignment="Bottom">
+            <Grid.Row>0</Grid.Row>
+            <Grid.ColumnSpan>4</Grid.ColumnSpan>
+            <TextBlock x:Name="resultLabel" Text="0"/>
+        </Viewbox>
+        <!--<Label
                Content="0"
                HorizontalAlignment="Right"
                VerticalAlignment="Bottom"
-               Grid.ColumnSpan="4"/>
+               Grid.ColumnSpan="4"/>-->
         <Button x:Name="acButton"
                 Style="{StaticResource modButtonStyle}"
                 Content="AC"
