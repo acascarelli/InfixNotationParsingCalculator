@@ -123,7 +123,7 @@
                 Grid.Column="3"/>
         <Button x:Name="negativeButton"
                 Style="{StaticResource modButtonStyle}"
-                Content="+/-"
+                Content="-/+"
                 Grid.Row="5"
                 Grid.Column="0"/>
         <Button x:Name="zeroButton"

@@ -28,6 +28,8 @@ namespace CalculatorTests.TokenTests
         [Theory]
         [InlineData("2.25", 2.25)]
         [InlineData("0.1", 0.1)]
+        [InlineData("\u02C91", -1)]
+        [InlineData("\u02C94.2", -4.2)]
         public void CorrectOperandTest(string expression, double expectedValue)
         {
             var actual = _tokenizer.Parse(expression);

@@ -26,7 +26,8 @@ namespace Calculator.Tokens
 
         private void FeedCharacter(char next)
         {
-            if (Char.IsWhiteSpace(next))
+
+            if (Char.IsWhiteSpace(next))  //ignore whitespace
                 return;
 
             if (IsOperatorCharacter(next))
@@ -43,7 +44,10 @@ namespace Calculator.Tokens
             }
             else
             {
-                _valueTokenBuilder.Append(next);
+                if(next == '\u02C9')
+                    _valueTokenBuilder.Append('-');
+                else
+                    _valueTokenBuilder.Append(next);
             }
         }
 
@@ -52,7 +56,7 @@ namespace Calculator.Tokens
         private static IToken CreateOperandToken(string raw)
         {
             if (double.TryParse(raw, out double result))
-                return new OperandToken(result);
+                return new OperandToken(result);           
 
             throw new ArgumentException($"The operand {raw} has an invalid format.");
         }
